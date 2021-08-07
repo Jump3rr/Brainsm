@@ -2,26 +2,26 @@ import { executeReducerBuilderCallback } from '@reduxjs/toolkit/dist/mapBuilders
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
 import { Text, View,  } from '../components/Themed';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParamList } from '../types';
 
-export default function MainMenu({navigation}:any) {
+export default function MainMenu({navigation}:StackScreenProps<RootStackParamList, 'TabOne'>) {
 
   const pressHandlerNature = () => {
     navigation.navigate('Nature');
   }
 
-  const pressHandlerAsmr = () => {
-    navigation.navigate('Player');
-  }
+  // const pressHandlerAsmr = () => {
+  //   navigation.navigate('Player');
+  // }
 
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
-        <SafeAreaView>
           <Text>ICON</Text>
-        </SafeAreaView>
       </View>
       <View style={styles.container}>
-      <TouchableOpacity onPress={pressHandlerAsmr}>
+      <TouchableOpacity onPress={pressHandlerNature}>
         <Text style={styles.singleSound}>ASMR</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={pressHandlerNature}>
@@ -30,6 +30,7 @@ export default function MainMenu({navigation}:any) {
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       </View>
     </View>
+
   );
 }
 

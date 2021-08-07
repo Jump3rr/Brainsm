@@ -1,4 +1,6 @@
 import { executeReducerBuilderCallback } from '@reduxjs/toolkit/dist/mapBuilders';
+import { StackScreenProps } from '@react-navigation/stack';
+import { RootStackParamList } from '../types';
 import * as React from 'react';
 //import { useEffect } from 'react';
 import { StyleSheet, TouchableOpacity, Image, SafeAreaView } from 'react-native';
@@ -6,7 +8,7 @@ import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
 import * as customData from '../src/data.json';
 
-export default function NatureLibrary({navigation}:any) {
+export default function NatureLibrary({navigation}:StackScreenProps<RootStackParamList, 'Nature'>) {
 
   const pressHandler = () => {
     navigation.navigate('TabTwo');
@@ -63,8 +65,8 @@ const styles = StyleSheet.create({
     height: 100,
     width: '100%',
     backgroundColor: '#f0f0f0',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
   },
   separator: {
     marginVertical: 30,
