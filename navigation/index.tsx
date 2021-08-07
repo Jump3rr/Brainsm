@@ -13,8 +13,9 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import { RootStackParamList } from '../types';
 //import BottomTabNavigator from './BottomTabNavigator';
 import LinkingConfiguration from './LinkingConfiguration';
-import CurrentPlayer from '../screens/currentPlayer';
+import NatureLibrary from '../screens/natureLibrary';
 import TabTwoScreen from '../screens/TabTwoScreen';
+import MainMenu from '../screens/TabOneScreen';
 
 //import store from '../app/store';
 //import { Provider } from 'react-redux';
@@ -49,7 +50,8 @@ const Stack = createStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={CurrentPlayer} />
+      <Stack.Screen name="Root" component={MainMenu} />
+      <Stack.Screen name="Nature" component={NatureLibrary} />
       <Stack.Screen name="TabTwo" component={TabTwoScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
