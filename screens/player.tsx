@@ -4,28 +4,35 @@ import { StyleSheet, TouchableOpacity, SafeAreaView, StatusBar } from 'react-nat
 import { Text, View,  } from '../components/Themed';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
+import TrackPlayer from 'react-native-track-player';
+import * as customData from '../src/data.json';
 
-export default function MainMenu({navigation}:StackScreenProps<RootStackParamList, 'TabOne'>) {
 
-  const pressHandlerNature = () => {
-    navigation.navigate('Nature');
-  }
+export default function Player({navigation}:StackScreenProps<RootStackParamList, 'Player'>) {
 
-  const pressHandlerAsmr = () => {
-    navigation.navigate('Player');
+  const start = async () => {
+      await TrackPlayer.setupPlayer();
+      await TrackPlayer.add({
+        //   id: String(customData?.library[0]?.id),
+        //   url: customData?.library[0]?.sound,
+        //   title: customData?.library[0]?.title,
+        //   artist: customData?.library[0]?.artist
+        id: '1',
+        url: require('../src/sounds/waves.mp3'),
+        title: 'Waves',
+        artist: ',sd'
+      });
+      await TrackPlayer?.play();
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
-          <Text>ICON</Text>
+          <Text>PLAYER</Text>
       </View>
       <View style={styles.container}>
-      <TouchableOpacity onPress={pressHandlerAsmr}>
+      <TouchableOpacity onPress={start}>
         <Text style={styles.singleSound}>ASMR</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={pressHandlerNature}>
-        <Text style={styles.singleSound}>Nature</Text>
       </TouchableOpacity>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       </View>

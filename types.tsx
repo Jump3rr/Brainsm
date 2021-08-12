@@ -8,6 +8,7 @@ export type RootStackParamList = {
   TabOne: undefined;
   Nature: undefined;
   TabTwo: undefined;
+  Player: undefined;
   NotFound: undefined;
 };
 
