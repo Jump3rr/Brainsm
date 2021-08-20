@@ -17,6 +17,7 @@ import NatureLibrary from '../screens/natureLibrary';
 import TabTwoScreen from '../screens/TabTwoScreen';
 import MainMenu from '../screens/TabOneScreen';
 import Player from '../screens/player';
+import { ILibrary } from '../src/ILibrary';
 //import store from '../app/store';
 //import { Provider } from 'react-redux';
 //import { useDispatch } from 'react-redux';
@@ -53,7 +54,7 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={MainMenu} />
       <Stack.Screen name="Nature" component={NatureLibrary} />
       <Stack.Screen name="TabTwo" component={TabTwoScreen} />
-      <Stack.Screen name="Player" component={Player} />
+      <Stack.Screen name="Player" component={Player} options={({ route }) => ({ title: route?.params?.title })} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
     </Stack.Navigator>
   );

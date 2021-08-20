@@ -3,12 +3,14 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
+import { ILibrary } from "./src/ILibrary";
+
 export type RootStackParamList = {
   Root: undefined;
   TabOne: undefined;
   Nature: undefined;
   TabTwo: undefined;
-  Player: undefined;
+  Player: any;//{ sound: ILibrary};
   NotFound: undefined;
 };
 

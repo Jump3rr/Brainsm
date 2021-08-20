@@ -12,7 +12,8 @@ export default function MainMenu({navigation}:StackScreenProps<RootStackParamLis
   }
 
   const pressHandlerAsmr = () => {
-    navigation.navigate('Player');
+    //navigation.navigate('Player');
+    navigation.navigate('Nature');
   }
 
   return (

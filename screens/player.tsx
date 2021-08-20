@@ -1,38 +1,43 @@
 import { executeReducerBuilderCallback } from '@reduxjs/toolkit/dist/mapBuilders';
 import * as React from 'react';
-import { StyleSheet, TouchableOpacity, SafeAreaView, StatusBar } from 'react-native';
+import { StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, Image } from 'react-native';
 import { Text, View,  } from '../components/Themed';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import TrackPlayer from 'react-native-track-player';
-import * as customData from '../src/data.json';
+import {AppRegistry} from 'react-native';
+import * as customData from '../src/data';
+import { ILibrary } from '../src/ILibrary';
+import { InitialProps } from 'expo/build/launch/withExpoRoot.types';
 
+export default function Player({route, navigation}:any) {//:StackScreenProps<RootStackParamList, 'Player'>) {
 
-export default function Player({navigation}:StackScreenProps<RootStackParamList, 'Player'>) {
-
+  const sound = route.params;
   const start = async () => {
       await TrackPlayer.setupPlayer();
       await TrackPlayer.add({
-        //   id: String(customData?.library[0]?.id),
-        //   url: customData?.library[0]?.sound,
-        //   title: customData?.library[0]?.title,
-        //   artist: customData?.library[0]?.artist
-        id: '1',
-        url: require('../src/sounds/waves.mp3'),
-        title: 'Waves',
-        artist: ',sd'
+          id: String(sound.sound.id),
+          url: sound.sound.sound,
+          title: sound.sound.title,
+          artist: sound.sound.artist
       });
-      await TrackPlayer?.play();
+      await TrackPlayer.play();
+  }
+  const stop = async () => {
+    await TrackPlayer.stop();
   }
 
   return (
     <View style={styles.container}>
       <View style={styles.topBar}>
-          <Text>PLAYER</Text>
+        <Text>{sound.title}</Text>
       </View>
       <View style={styles.container}>
       <TouchableOpacity onPress={start}>
-        <Text style={styles.singleSound}>ASMR</Text>
+        <Text style={styles.singleSound}>PLAY</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={stop}>
+        <Text style={styles.singleSound}>STOP</Text>
       </TouchableOpacity>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       </View>

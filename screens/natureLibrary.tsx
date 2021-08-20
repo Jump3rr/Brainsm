@@ -6,15 +6,17 @@ import * as React from 'react';
 import { StyleSheet, TouchableOpacity, Image, SafeAreaView } from 'react-native';
 import EditScreenInfo from '../components/EditScreenInfo';
 import { Text, View } from '../components/Themed';
-import * as customData from '../src/data.json';
+import * as customData from '../src/data';
+import { ILibrary } from '../src/ILibrary';
 
 export default function NatureLibrary({navigation}:StackScreenProps<RootStackParamList, 'Nature'>) {
 
-  const pressHandler = () => {
-    navigation.navigate('TabTwo');
-  }
+  // const pressHandler = (sound: ILibrary) => {
+  //   navigation.navigate('Player');
+  // }
   const pressHandlerHome = () => {
     navigation.navigate('Root');
+
   }
 
   return (
@@ -27,14 +29,14 @@ export default function NatureLibrary({navigation}:StackScreenProps<RootStackPar
         </SafeAreaView>
       </View>
       <View style={styles.container}>
-        {customData?.library?.length > 0 &&
-        customData?.library?.map((el) => {
-          const imgSrc = {
-            src: require('../src/img/waves.jpg')
-          }
+        {customData?.default?.length > 0 &&
+        customData?.default?.map((el) => {
           return (
-          <TouchableOpacity onPress={pressHandler} key={el.id-20}>
-            <Text style={styles.singleSound} key={el.id}><Image style={styles.photo} source={imgSrc.src} /> {el?.title}</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Player', {
+            sound: el,
+            title: el.title,
+          })} key={el.id-20}>
+            <Text style={styles.singleSound} key={el.id}><Image style={styles.photo} source={el?.img} /> {el?.title}</Text>
           </TouchableOpacity>
           )
         })

@@ -1,6 +1,6 @@
 export interface ILibrary {
     title: string;
-    author: string; 
+    artist: string; 
     img: string,
     sound: string,
     id: number
