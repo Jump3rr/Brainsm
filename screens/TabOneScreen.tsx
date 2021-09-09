@@ -4,6 +4,7 @@ import { StyleSheet, TouchableOpacity, SafeAreaView, StatusBar } from 'react-nat
 import { Text, View,  } from '../components/Themed';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
+import MiniPlayer from '../components/miniPlayer/MiniPlayer';
 
 export default function MainMenu({navigation}:StackScreenProps<RootStackParamList, 'TabOne'>) {
 
@@ -28,7 +29,7 @@ export default function MainMenu({navigation}:StackScreenProps<RootStackParamLis
       <TouchableOpacity onPress={pressHandlerNature}>
         <Text style={styles.singleSound}>Nature</Text>
       </TouchableOpacity>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      {/* <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" /> */}
       </View>
     </View>
 

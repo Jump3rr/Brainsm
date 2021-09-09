@@ -18,6 +18,7 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import MainMenu from '../screens/TabOneScreen';
 import Player from '../screens/player';
 import { ILibrary } from '../src/ILibrary';
+import MiniPlayer from '../components/miniPlayer/MiniPlayer';
 //import store from '../app/store';
 //import { Provider } from 'react-redux';
 //import { useDispatch } from 'react-redux';
@@ -39,6 +40,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
       linking={LinkingConfiguration}
       theme={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <RootNavigator />
+      <MiniPlayer />
     </NavigationContainer>
     //</Provider>
   );

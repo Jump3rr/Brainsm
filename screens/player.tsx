@@ -1,7 +1,7 @@
 import { executeReducerBuilderCallback } from '@reduxjs/toolkit/dist/mapBuilders';
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, Image } from 'react-native';
-import { Text, View,  } from '../components/Themed';
+import { Text, View } from '../components/Themed';
 import { StackScreenProps } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import TrackPlayer from 'react-native-track-player';
@@ -9,23 +9,15 @@ import {AppRegistry} from 'react-native';
 import * as customData from '../src/data';
 import { ILibrary } from '../src/ILibrary';
 import { InitialProps } from 'expo/build/launch/withExpoRoot.types';
+import { useEffect, useState } from 'react';
+import Slider from '@react-native-community/slider';
+import ProgressSlider from '../components/ProgressSlider';
+import { PlayerContext, usePlayerContext } from '../src/contexts/PlayerContext';
 
 export default function Player({route, navigation}:any) {//:StackScreenProps<RootStackParamList, 'Player'>) {
-
+  const playerContext = usePlayerContext();
+  
   const sound = route.params;
-  const start = async () => {
-      await TrackPlayer.setupPlayer();
-      await TrackPlayer.add({
-          id: String(sound.sound.id),
-          url: sound.sound.sound,
-          title: sound.sound.title,
-          artist: sound.sound.artist
-      });
-      await TrackPlayer.play();
-  }
-  const stop = async () => {
-    await TrackPlayer.stop();
-  }
 
   return (
     <View style={styles.container}>
@@ -33,12 +25,21 @@ export default function Player({route, navigation}:any) {//:StackScreenProps<Roo
         <Text>{sound.title}</Text>
       </View>
       <View style={styles.container}>
-      <TouchableOpacity onPress={start}>
+      <TouchableOpacity onPress={() => playerContext.play(sound.sound)}>
         <Text style={styles.singleSound}>PLAY</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={stop}>
+      <TouchableOpacity onPress={() => playerContext.pause()}>
         <Text style={styles.singleSound}>STOP</Text>
       </TouchableOpacity>
+      {/* <TouchableOpacity onPress={pause}>
+        <Text style={styles.singleSound}>Pause</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={position}>
+        <Text style={styles.singleSound}>Pause</Text>
+        <Text style={styles.singleSound}>{duration}</Text>
+        <Text>{progress}</Text>
+      </TouchableOpacity> */}
+      <ProgressSlider />
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       </View>
     </View>

@@ -35,8 +35,8 @@ export default function NatureLibrary({navigation}:StackScreenProps<RootStackPar
           <TouchableOpacity onPress={() => navigation.navigate('Player', {
             sound: el,
             title: el.title,
-          })} key={el.id-20}>
-            <Text style={styles.singleSound} key={el.id}><Image style={styles.photo} source={el?.img} /> {el?.title}</Text>
+          })} key={el.id}>
+            <Text style={styles.singleSound} key={el.id}><Image style={styles.photo} source={el?.artwork} /> {el?.title}</Text>
           </TouchableOpacity>
           )
         })
