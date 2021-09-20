@@ -1,4 +1,3 @@
-import { addListener } from 'expo-updates';
 import React, {useState, useEffect, createContext, useContext, FC} from 'react';
 import RNTrackPlayer, {STATE_NONE, STATE_PAUSED, STATE_PLAYING, STATE_STOPPED, Track, TrackPlayerEvents, State as TrackPlayerState} from 'react-native-track-player';
 
