@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "27936881784",
+    "project_id": "brainsmdb",
+    "storage_bucket": "brainsmdb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27936881784:android:cf5b6c491e39bc99fe418d",
+        "android_client_info": {
+          "package_name": "com.awesometsproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27936881784-r2mrgco22kgc0b94sgf6aetuv84aai4n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsX4PbyrUnondNfThbmn6G4xTu9WkarYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27936881784-r2mrgco22kgc0b94sgf6aetuv84aai4n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27936881784:android:02a782c58f9aa5f0fe418d",
+        "android_client_info": {
+          "package_name": "com.brainsm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27936881784-r2mrgco22kgc0b94sgf6aetuv84aai4n.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsX4PbyrUnondNfThbmn6G4xTu9WkarYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27936881784-r2mrgco22kgc0b94sgf6aetuv84aai4n.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

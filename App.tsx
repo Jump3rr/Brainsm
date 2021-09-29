@@ -20,6 +20,8 @@ import TrackPlayer from 'react-native-track-player';
 import { Box } from 'react-native-design-utility';
 import { ActivityIndicator } from 'react-native';
 import { PlayerContextProvider } from './src/contexts/PlayerContext';
+import store from './src/tools/store';
+import { Provider } from 'react-redux';
 
 const App = () => {
   const [isReady, setIsReady] = useState<Boolean>(true);
@@ -55,9 +57,11 @@ const App = () => {
 
   return (
     <UtilityThemeProvider theme={theme}>
-      <NavigationContainer>
-        <MainStackNavigator />
-      </NavigationContainer>
+      <Provider store={store}>
+        <NavigationContainer>
+          <MainStackNavigator />
+        </NavigationContainer>
+      </Provider>
     </UtilityThemeProvider>
   );
 };

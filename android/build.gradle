@@ -9,12 +9,13 @@ buildscript {
         ndkVersion = "20.1.5948944"
     }
     repositories {
-        google()
         mavenCentral()
         jcenter()
+        google()  // Google's Maven repository
     }
     dependencies {
         classpath("com.android.tools.build:gradle:4.2.1")
+        classpath 'com.google.gms:google-services:4.3.10'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -33,8 +34,7 @@ allprojects {
             // Android JSC is installed from npm
             url("$rootDir/../node_modules/jsc-android/dist")
         }
-
-        google()
+        google()  // Google's Maven repository
         maven { url 'https://www.jitpack.io' }
     }
 }

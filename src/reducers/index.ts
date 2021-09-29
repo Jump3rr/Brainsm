@@ -1,10 +1,10 @@
-// import {combineReducers} from 'redux';
-// import library, { ILibraryReducer } from "./libraryReducer";
+import {combineReducers} from 'redux';
+import sounds, { ISoundReducer } from "./soundsReducer";
 
-// export default combineReducers({
-//   library,
-// });
+export default combineReducers({
+    sounds,
+});
 
-// export interface IState {
-//     library: ILibraryReducer;
-// }
+export interface IState {
+    sounds: ISoundReducer;
+}
