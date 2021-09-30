@@ -1,19 +1,29 @@
-// import firestore from '@react-native-firebase/firestore';
+import React, { Dispatch, useEffect } from 'react';
+import firestore from '@react-native-firebase/firestore';
 
-// export const setSounds = (data: any) => ({
-//     type: "GET_SOUNDS",
-//     payload: data,
-// })
+const setSoundsLoading = (message: any) => ({
+    type: "SET_SOUNDS_LOADING",
+    payload: message,
+  });
 
-// export const getSounds = () => {
-// firestore()
-//   .collection('sounds')
-//   .get()
-//   .then(querySnapshot => {
-//     console.log('Total users: ', querySnapshot.size);
+export const setSounds = (data: any) => ({
+    type: "GET_SOUNDS",
+    payload: data,
+})
 
-//     querySnapshot.forEach(documentSnapshot => {
-//       console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
-//     });
-//   });
-// }
+export const getSounds = () => (dispatch: Dispatch<any>) => {
+  const arr: any[] = [];
+  dispatch(setSoundsLoading(true));
+
+  return firestore()
+  .collection('sounds')
+  .get()
+  .then(querySnapshot => {
+    querySnapshot.forEach(documentSnapshot => {
+      arr.push(documentSnapshot.data());
+    });
+  })
+  .then(() => {
+      dispatch(setSounds(arr))
+  })
+}

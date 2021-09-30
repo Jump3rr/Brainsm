@@ -42,6 +42,9 @@ const color = {
     greenLight: '#66bb6a',
     greenLighter: '#81c784',
     greenLightest: '#a5d6a7',
+    greenBottled: '#326647',
+
+    pink: '#fad4db',//'#ffc0cb',
   };
   
   export const theme = {

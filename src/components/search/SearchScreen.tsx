@@ -1,18 +1,15 @@
-import { placeholder } from '@babel/types';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
 import { FlatList, TextInput } from 'react-native-gesture-handler';
 import { theme } from '../../constants/theme';
 import KeyboardDismissView from '../KeyboardDismissView';
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {IState} from "../../reducers";
 import { ISoundReducer } from '../../reducers/soundsReducer';
-import { getSounds } from '../../actions/soundsActions';
 
 const SearchScreen = () => {
 
-    getSounds();
     const { soundList } = useSelector<IState, ISoundReducer>((globalState) => ({
         ...globalState.sounds,
       }));
@@ -32,7 +29,7 @@ const SearchScreen = () => {
                                 <Text size="sm">{item.duration}</Text>
                             </Box>
                         </Box>
-                    )} keyExtractor={(item) => String(item.id)} />
+                    )} keyExtractor={(item) => String(item.title)} />
                 }
             </Box>
         </KeyboardDismissView>
