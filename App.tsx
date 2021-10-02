@@ -13,7 +13,7 @@ import { useColorScheme } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import MainStackNavigator from './src/navigators/MainStackNavigator';
-import { NavigationContainer } from '@react-navigation/native';
+import { DarkTheme, NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { UtilityThemeProvider } from 'react-native-design-utility';
 import { theme } from './src/constants/theme';
 import TrackPlayer from 'react-native-track-player';
@@ -42,25 +42,50 @@ const App = () => {
         })
         setIsReady(true);
       })
-      // await TrackPlayer.add(library);
-      // await TrackPlayer.play();
-
-      // setTimeout(() => {
-      //   TrackPlayer.stop();
-      // }, 2000);
   },[]);
-  const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+
+  const BrainsmDefaultTheme = {
+    ...DefaultTheme,
+    colors: {
+      ...DefaultTheme.colors,
+      primary: 'rgb(255, 45, 85)',
+      background: 'rgb(250, 212, 219)',
+      card: 'rgb(255, 255, 255)',
+      text: 'rgb(50, 102, 71)',
+      border: 'rgb(50, 102, 71)',
+      notification: 'rgb(255, 59, 48)'
+    },
+  };
+
+  const BrainsmDarkTheme = {
+    ...DarkTheme,
+    colors: {
+      ...DarkTheme.colors,
+      primary: 'rgb(255, 45, 85)',
+      //card: 'rgb(250, 212, 219)',
+      text: 'rgb(50, 102, 71)',
+      border: 'rgb(50, 102, 71)',
+      notification: 'rgb(255, 59, 48)',
+    },
   };
 
   return (
     <UtilityThemeProvider theme={theme}>
       <Provider store={store}>
-        <NavigationContainer>
+        {isReady ? (
+        <NavigationContainer theme={BrainsmDefaultTheme}>
+        {/* <NavigationContainer> */}
           <MainStackNavigator />
         </NavigationContainer>
+        ) : (
+          <Box f={1} center>
+            <ActivityIndicator />
+          </Box>
+        )}
+        {/* <NavigationContainer theme={BrainsmDefaultTheme}>
+          <MainStackNavigator />
+        </NavigationContainer> */}
       </Provider>
     </UtilityThemeProvider>
   );

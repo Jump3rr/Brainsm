@@ -5,6 +5,7 @@ import MainTabNavigator from "./MainTabNavigator";
 import { setSounds } from '../actions/soundsActions';
 import {getSounds } from '../actions/soundsActions';
 import { useDispatch } from 'react-redux';
+import { Modal } from 'react-native';
 
 const MainStack = createNativeStackNavigator();
 

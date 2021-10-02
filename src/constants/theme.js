@@ -44,6 +44,7 @@ const color = {
     greenLightest: '#a5d6a7',
     greenBottled: '#326647',
 
+    pinkDarker: '#ffc0cb',
     pink: '#fad4db',//'#ffc0cb',
   };
   

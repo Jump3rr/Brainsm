@@ -1,9 +1,12 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 import { createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../components/home/HomeScreen';
 import SearchScreen from '../components/search/SearchScreen';
 import LibraryScreen from '../components/library/LibraryScreen';
+import Player from '../components/player/player';
+import {Box, Text} from 'react-native-design-utility';
+import MiniPlayer from '../components/miniPlayer/MiniPlayer';
 
 const MainTab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -15,7 +18,7 @@ const HomeStackNavigator = () => {
             <HomeStack.Group
                 screenOptions={{ }}
             >
-            <HomeStack.Screen name="Hom" options={{title: "Brainsm"}} component={HomeScreen} />
+            <HomeStack.Screen name="HomeStack" options={{title: "Brainsm"}} component={HomeScreen} />
             </HomeStack.Group>
         </HomeStack.Navigator>
     )
@@ -26,7 +29,8 @@ const SearchStackNavigator = () => {
             <SearchStack.Group
                 screenOptions={{ }}
             >
-            <SearchStack.Screen name="Search" component={SearchScreen} />
+            <SearchStack.Screen name="SearchStack" options={{title: "Brainsm"}} component={SearchScreen} />
+            <SearchStack.Screen name="Player" options={{title: "Player"}} component={Player} />
             </SearchStack.Group>
         </SearchStack.Navigator>
     )
@@ -37,7 +41,7 @@ const LibraryStackNavigator = () => {
             <LibraryStack.Group
                 screenOptions={{ }}
             >
-            <LibraryStack.Screen name="Library" component={LibraryScreen} />
+            <LibraryStack.Screen name="LibraryStack" options={{title: "Brainsm"}} component={LibraryScreen} />
             </LibraryStack.Group>
         </LibraryStack.Navigator>
     )
@@ -45,7 +49,12 @@ const LibraryStackNavigator = () => {
 
 const MainTabNavigator = () => {
     return (
-        <MainTab.Navigator>
+        <MainTab.Navigator tabBar={(tabsProps)=> (
+            <>
+                <MiniPlayer />
+                <BottomTabBar {...tabsProps} />
+            </>
+        )}>
             <MainTab.Group
                 screenOptions={{headerShown: false}}
             >
