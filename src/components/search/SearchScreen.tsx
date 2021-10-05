@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity } from 'react-native';
-import {Box, Text} from 'react-native-design-utility';
+import { StyleSheet, TouchableOpacity, Image } from 'react-native';
+import {Box, Text } from 'react-native-design-utility';
 import { FlatList, TextInput } from 'react-native-gesture-handler';
 import { theme } from '../../constants/theme';
 import KeyboardDismissView from '../KeyboardDismissView';
@@ -28,10 +28,14 @@ const SearchScreen = () => {
                     <FlatList style={styles.list} data={soundList} renderItem={({item}) => (
                         <TouchableOpacity onPress={() => navigation.navigate('Player', {data: item})}>
                         <Box h={90} p="xs" dir="row" align="center">
-                            <Box h={70} w={70} bg="blue" radius={10} mr={10} />
+                        <Image
+                            style={styles.images}
+                            source={{uri: item.artwork}}
+                        />
                             <Box>
                                 <Text bold>{item.title}</Text>
                                 <Text size="sm">{item.duration}</Text>
+                                <Text size="sm">{item.url}</Text>
                             </Box>
                         </Box>
                         </TouchableOpacity>
@@ -53,6 +57,12 @@ const styles = StyleSheet.create({
     },
     list: {
         minHeight: '100%',
+    },
+    images: {
+        width: 70,
+        height: 70,
+        borderRadius: 50,
+        marginRight: 10
     }
 });
 export default SearchScreen;

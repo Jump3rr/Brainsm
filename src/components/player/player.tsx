@@ -10,12 +10,10 @@ import Slider from '@react-native-community/slider';
 import ProgressSlider from '../ProgressSlider';
 import { PlayerContext, usePlayerContext } from '../../contexts/PlayerContext';
 import { NavigationProp, useRoute, RouteProp } from '@react-navigation/core';
-//import { SearchStackRouteParamsList } from '../../navigators/MainStackNavigator';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function Player({route, navigation}:any) {//:StackScreenProps<RootStackParamList, 'Player'>) {,
-  //type NavigationParams = RouteProp<SearchStackRouteParamsList, 'PodcastDetails'>;
+export default function Player({route, navigation}:any) {
   const playerContext = usePlayerContext();
-  //const data = useRoute<NavigationProp>().p
   
   const sound = route?.params.data;
 
@@ -23,25 +21,20 @@ export default function Player({route, navigation}:any) {//:StackScreenProps<Roo
     <Box style={styles.container}>
       <Box style={styles.topBar}>
         <Text>{sound.title}</Text>
+        {console.log(sound)}
       </Box>
       <Box style={styles.container}>
-      <TouchableOpacity onPress={() => playerContext.play(sound.sound)}>
-        <Text style={styles.singleSound}>PLAY</Text>
-      </TouchableOpacity>
+      {/* <TouchableOpacity onPress={() => playerContext.play(sound)}> 
+        <Text style={styles.singleSound}>PLAY</Text> */}
+        <Icon name="play" size={30} style={{color: '#fff'}} />
+      {/* </TouchableOpacity> */}
       <TouchableOpacity onPress={() => playerContext.pause()}>
         <Text style={styles.singleSound}>STOP</Text>
       </TouchableOpacity>
-      {/* <TouchableOpacity onPress={pause}>
-        <Text style={styles.singleSound}>Pause</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={position}>
-        <Text style={styles.singleSound}>Pause</Text>
-        <Text style={styles.singleSound}>{duration}</Text>
-        <Text>{progress}</Text>
-      </TouchableOpacity> */}
       <ProgressSlider />
       <Box style={styles.separator} />
       </Box>
+      <Icon name="stop" size={30}/>
     </Box>
 
   );

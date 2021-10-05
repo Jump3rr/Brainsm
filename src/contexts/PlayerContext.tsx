@@ -58,11 +58,11 @@ export const PlayerContextProvider: FC = (props) => {
     const seekTo = async (amount = 30) => {
         const position = await RNTrackPlayer.getPosition();
         await RNTrackPlayer.seekTo(position + amount);
-      };
+    };
     
-      const goTo = async (amount: number) => {
+    const goTo = async (amount: number) => {
         await RNTrackPlayer.seekTo(amount);
-      };
+    };
 
     const value: PlayerContextType = {
         isPlaying: playerState === STATE_PLAYING,

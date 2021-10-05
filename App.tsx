@@ -74,10 +74,11 @@ const App = () => {
     <UtilityThemeProvider theme={theme}>
       <Provider store={store}>
         {isReady ? (
-        <NavigationContainer theme={BrainsmDefaultTheme}>
-        {/* <NavigationContainer> */}
-          <MainStackNavigator />
-        </NavigationContainer>
+        <PlayerContextProvider>
+          <NavigationContainer theme={BrainsmDefaultTheme}>
+            <MainStackNavigator />
+          </NavigationContainer>
+        </PlayerContextProvider>
         ) : (
           <Box f={1} center>
             <ActivityIndicator />
