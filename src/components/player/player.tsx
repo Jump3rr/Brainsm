@@ -11,6 +11,7 @@ import ProgressSlider from '../ProgressSlider';
 import { PlayerContext, usePlayerContext } from '../../contexts/PlayerContext';
 import { NavigationProp, useRoute, RouteProp } from '@react-navigation/core';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { theme } from '../../constants/theme';
 
 export default function Player({route, navigation}:any) {
   const playerContext = usePlayerContext();
@@ -24,17 +25,31 @@ export default function Player({route, navigation}:any) {
         {console.log(sound)}
       </Box>
       <Box style={styles.container}>
-      {/* <TouchableOpacity onPress={() => playerContext.play(sound)}> 
-        <Text style={styles.singleSound}>PLAY</Text> */}
-        <Icon name="play" size={30} style={{color: '#fff'}} />
-      {/* </TouchableOpacity> */}
-      <TouchableOpacity onPress={() => playerContext.pause()}>
-        <Text style={styles.singleSound}>STOP</Text>
-      </TouchableOpacity>
-      <ProgressSlider />
-      <Box style={styles.separator} />
+      <Image
+        style={styles.images}
+        source={{uri: sound.artwork}}
+      />
+        <Box style={styles.playerButtons}>
+          <TouchableOpacity onPress={() => playerContext.pause()}>
+            <Icon name="step-backward" size={40} style={styles.icons} />
+          </TouchableOpacity>
+          {!playerContext.isPlaying && (
+          <TouchableOpacity onPress={() => playerContext.play(sound)}> 
+            <Icon name="play" size={60} style={styles.icons} />
+          </TouchableOpacity>
+          )}
+          {playerContext.isPlaying && (
+          <TouchableOpacity onPress={() => playerContext.pause()}>
+            <Icon name="pause" size={60} style={styles.icons} />
+          </TouchableOpacity>
+          )}
+          <TouchableOpacity onPress={() => playerContext.pause()}>
+            <Icon name="step-forward" size={40} style={styles.icons} />
+          </TouchableOpacity>
+        </Box>
+        <ProgressSlider />
+        {/* <Box style={styles.separator} /> */}
       </Box>
-      <Icon name="stop" size={30}/>
     </Box>
 
   );
@@ -67,4 +82,17 @@ const styles = StyleSheet.create({
     height: 1,
     width: '80%',
   },
+  playerButtons: {
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  icons: {
+    color: theme.color.white,
+    marginHorizontal: 15,
+  },
+  images: {
+    width: 200,
+    height: 200,
+    marginBottom: 30
+  }
 });
