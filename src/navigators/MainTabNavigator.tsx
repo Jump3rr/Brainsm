@@ -2,16 +2,20 @@ import React from 'react';
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 import { createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../components/home/HomeScreen';
-import SearchScreen from '../components/search/SearchScreen';
+import AboutScreen from '../components/about/AboutScreen';
 import LibraryScreen from '../components/library/LibraryScreen';
 import Player from '../components/player/player';
 import {Box, Text} from 'react-native-design-utility';
 import MiniPlayer from '../components/miniPlayer/MiniPlayer';
+import FeatherIcon from 'react-native-vector-icons/Feather';
+import { useTheme } from '@react-navigation/native';
 
 const MainTab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
-const SearchStack = createStackNavigator();
+const AboutStack = createStackNavigator();
 const LibraryStack = createStackNavigator();
+const iconSize = 24;
+
 const HomeStackNavigator = () => {
     return (
         <HomeStack.Navigator>
@@ -23,18 +27,6 @@ const HomeStackNavigator = () => {
         </HomeStack.Navigator>
     )
 }
-const SearchStackNavigator = () => {
-    return (
-        <SearchStack.Navigator>
-            <SearchStack.Group
-                screenOptions={{ }}
-            >
-            <SearchStack.Screen name="SearchStack" options={{title: "Brainsm"}} component={SearchScreen} />
-            <SearchStack.Screen name="Player" options={{title: "Player"}} component={Player} />
-            </SearchStack.Group>
-        </SearchStack.Navigator>
-    )
-}
 const LibraryStackNavigator = () => {
     return (
         <LibraryStack.Navigator>
@@ -42,12 +34,26 @@ const LibraryStackNavigator = () => {
                 screenOptions={{ }}
             >
             <LibraryStack.Screen name="LibraryStack" options={{title: "Brainsm"}} component={LibraryScreen} />
+            <LibraryStack.Screen name="Player" options={{title: "Player"}} component={Player} />
             </LibraryStack.Group>
         </LibraryStack.Navigator>
     )
 }
+const AboutStackNavigator = () => {
+    return (
+        <AboutStack.Navigator>
+            <AboutStack.Group
+                screenOptions={{ }}
+            >
+            <AboutStack.Screen name="AboutStack" options={{title: "About"}} component={AboutScreen} />
+            </AboutStack.Group>
+        </AboutStack.Navigator>
+    )
+}
 
 const MainTabNavigator = () => {
+    const colors = useTheme();
+
     return (
         <MainTab.Navigator tabBar={(tabsProps)=> (
             <>
@@ -58,9 +64,9 @@ const MainTabNavigator = () => {
             <MainTab.Group
                 screenOptions={{headerShown: false}}
             >
-                <MainTab.Screen name="Home" component={HomeStackNavigator} />
-                <MainTab.Screen name="Search" component={SearchStackNavigator} />
-                <MainTab.Screen name="Library" component={LibraryStackNavigator} />
+                <MainTab.Screen name="Home" component={HomeStackNavigator} options={{tabBarIcon: (props) => <FeatherIcon name="home" size={iconSize} color={props.color} />}} />
+                <MainTab.Screen name="Library" component={LibraryStackNavigator} options={{tabBarIcon: (props) => <FeatherIcon name="book-open" size={iconSize} color={props.color} />}}/>
+                <MainTab.Screen name="About" component={AboutStackNavigator} options={{tabBarIcon: (props) => <FeatherIcon name="more-horizontal" size={iconSize} color={props.color} />}}/>
             </MainTab.Group>
         </MainTab.Navigator>
     )
