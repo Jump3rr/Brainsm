@@ -4,11 +4,14 @@ import { createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../components/home/HomeScreen';
 import AboutScreen from '../components/about/AboutScreen';
 import LibraryScreen from '../components/library/LibraryScreen';
+import NatureScreen from '../components/library/NatureScreen';
+import PeopleScreen from '../components/library/PeopleScreen';
 import Player from '../components/player/player';
 import {Box, Text} from 'react-native-design-utility';
 import MiniPlayer from '../components/miniPlayer/MiniPlayer';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import { useTheme } from '@react-navigation/native';
+import ASMRScreen from '../components/library/ASMRScreen';
 
 const MainTab = createBottomTabNavigator();
 const HomeStack = createStackNavigator();
@@ -23,6 +26,9 @@ const HomeStackNavigator = () => {
                 screenOptions={{ }}
             >
             <HomeStack.Screen name="HomeStack" options={{title: "Brainsm"}} component={HomeScreen} />
+            <HomeStack.Screen name="Nature" options={{title: "Brainsm"}} component={NatureScreen} />
+            <HomeStack.Screen name="ASMR" options={{title: "Brainsm"}} component={ASMRScreen} />
+            <HomeStack.Screen name="People" options={{title: "Brainsm"}} component={PeopleScreen} />
             </HomeStack.Group>
         </HomeStack.Navigator>
     )

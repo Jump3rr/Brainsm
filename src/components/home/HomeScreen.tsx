@@ -19,13 +19,13 @@ const HomeScreen = () => {
             <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('Library')}>
                     <Text bold style={{color: colors.colors.text}} center>All sounds</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('Library')}>
+            <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('Nature')}>
                 <Text bold style={{color: colors.colors.text}} center>Nature</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('Library')}>
+            <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('People')}>
                 <Text bold style={{color: colors.colors.text}} center>People</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('Library')}>
+            <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('ASMR')}>
                 <Text bold style={{color: colors.colors.text}} center>ASMR</Text>
             </TouchableOpacity>
             {/* przenoszenie do funkcji ktora losuje liczbe z zakresu reduxa a nastepnie przenosi do playera z odpowiednimi parametrami */}

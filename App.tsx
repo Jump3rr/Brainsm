@@ -9,11 +9,9 @@
  */
 
  import React, {useEffect, useState} from 'react';
-import { useColorScheme } from 'react-native';
-
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import MainStackNavigator from './src/navigators/MainStackNavigator';
-import { DarkTheme, NavigationContainer, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
+import { BrainsmDarkTheme, BrainsmDefaultTheme } from './src/tools/themes';
 import { UtilityThemeProvider } from 'react-native-design-utility';
 import { theme } from './src/constants/theme';
 import TrackPlayer from 'react-native-track-player';
@@ -22,6 +20,7 @@ import { ActivityIndicator } from 'react-native';
 import { PlayerContextProvider } from './src/contexts/PlayerContext';
 import store from './src/tools/store';
 import { Provider } from 'react-redux';
+import NavigationCon from './src/navigators/NavigationContainer';
 
 const App = () => {
   const [isReady, setIsReady] = useState<Boolean>(true);
@@ -44,50 +43,21 @@ const App = () => {
       })
   },[]);
 
-
-  const BrainsmDefaultTheme = {
-    ...DefaultTheme,
-    colors: {
-      ...DefaultTheme.colors,
-      //primary: 'rgb(255, 45, 85)',
-      primary: 'rgb(250, 212, 219)',
-      background: 'rgb(250, 212, 219)',
-      card: 'rgb(255, 255, 255)',
-      text: 'rgb(50, 102, 71)',
-      border: 'rgb(50, 102, 71)',
-      notification: 'rgb(255, 59, 48)',
-    },
-  };
-
-  const BrainsmDarkTheme = {
-    ...DarkTheme,
-    colors: {
-      ...DarkTheme.colors,
-      primary: 'rgb(250, 212, 219)',
-      //card: 'rgb(250, 212, 219)',
-      text: 'rgb(250, 212, 219)',
-      border: 'rgb(50, 102, 71)',
-      notification: 'rgb(255, 59, 48)',
-    },
-  };
-
   return (
     <UtilityThemeProvider theme={theme}>
       <Provider store={store}>
         {isReady ? (
         <PlayerContextProvider>
-          <NavigationContainer theme={BrainsmDefaultTheme}>
+          <NavigationCon />
+          {/* <NavigationContainer theme={ isDarkMode ? BrainsmDarkTheme : BrainsmDefaultTheme}>
             <MainStackNavigator />
-          </NavigationContainer>
+          </NavigationContainer> */}
         </PlayerContextProvider>
         ) : (
           <Box f={1} center>
             <ActivityIndicator />
           </Box>
         )}
-        {/* <NavigationContainer theme={BrainsmDefaultTheme}>
-          <MainStackNavigator />
-        </NavigationContainer> */}
       </Provider>
     </UtilityThemeProvider>
   );

@@ -1,22 +1,22 @@
 import { Dispatch } from 'react';
 import firestore from '@react-native-firebase/firestore';
 
-const setSoundsLoading = (message: any) => ({
-    type: "SET_SOUNDS_LOADING",
+const setASMRSoundsLoading = (message: any) => ({
+    type: "SET_ASMR_SOUNDS_LOADING",
     payload: message,
   });
 
-export const setSounds = (data: any) => ({
-    type: "GET_SOUNDS",
+export const setASMRSounds = (data: any) => ({
+    type: "GET_ASMR_SOUNDS",
     payload: data,
 })
 
-export const getSounds = () => (dispatch: Dispatch<any>) => {
+export const getASMRSounds = () => (dispatch: Dispatch<any>) => {
   const arr: any[] = [];
-  dispatch(setSoundsLoading(true));
+  dispatch(setASMRSoundsLoading(true));
 
   return firestore()
-  .collection('sounds')
+  .collection('asmr')
   .get()
   .then(querySnapshot => {
     querySnapshot.forEach(documentSnapshot => {
@@ -24,6 +24,6 @@ export const getSounds = () => (dispatch: Dispatch<any>) => {
     });
   })
   .then(() => {
-      dispatch(setSounds(arr))
+      dispatch(setASMRSounds(arr))
   })
 }

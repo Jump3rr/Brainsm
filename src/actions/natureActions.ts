@@ -1,22 +1,22 @@
 import { Dispatch } from 'react';
 import firestore from '@react-native-firebase/firestore';
 
-const setSoundsLoading = (message: any) => ({
-    type: "SET_SOUNDS_LOADING",
+const setNatureSoundsLoading = (message: any) => ({
+    type: "SET_NATURE_SOUNDS_LOADING",
     payload: message,
   });
 
-export const setSounds = (data: any) => ({
-    type: "GET_SOUNDS",
+export const setNatureSounds = (data: any) => ({
+    type: "GET_NATURE_SOUNDS",
     payload: data,
 })
 
-export const getSounds = () => (dispatch: Dispatch<any>) => {
+export const getNatureSounds = () => (dispatch: Dispatch<any>) => {
   const arr: any[] = [];
-  dispatch(setSoundsLoading(true));
+  dispatch(setNatureSoundsLoading(true));
 
   return firestore()
-  .collection('sounds')
+  .collection('nature')
   .get()
   .then(querySnapshot => {
     querySnapshot.forEach(documentSnapshot => {
@@ -24,6 +24,6 @@ export const getSounds = () => (dispatch: Dispatch<any>) => {
     });
   })
   .then(() => {
-      dispatch(setSounds(arr))
+      dispatch(setNatureSounds(arr))
   })
 }
