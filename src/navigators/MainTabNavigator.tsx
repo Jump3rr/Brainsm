@@ -29,6 +29,7 @@ const HomeStackNavigator = () => {
             <HomeStack.Screen name="Nature" options={{title: "Brainsm"}} component={NatureScreen} />
             <HomeStack.Screen name="ASMR" options={{title: "Brainsm"}} component={ASMRScreen} />
             <HomeStack.Screen name="People" options={{title: "Brainsm"}} component={PeopleScreen} />
+            <HomeStack.Screen name="Player" options={{title: "Player"}} component={Player} />
             </HomeStack.Group>
         </HomeStack.Navigator>
     )
