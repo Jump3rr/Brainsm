@@ -7,25 +7,30 @@ import KeyboardDismissView from '../KeyboardDismissView';
 import { useSelector } from "react-redux";
 import {IState} from "../../reducers";
 import { ISoundReducer } from '../../reducers/soundsReducer';
+import { IASMRReducer } from '../../reducers/asmrReducer';
+import { INatureReducer } from '../../reducers/natureReducer';
+import { useTheme } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/core';
 
 
 const LibraryScreen = () => {
 
-    const { soundList } = useSelector<IState, ISoundReducer>((globalState) => ({
+    const colors = useTheme();
+    const { soundList, asmrList, natureList } = useSelector<IState, ISoundReducer & IASMRReducer & INatureReducer>((globalState) => ({
         ...globalState.sounds,
+        ...globalState.asmr,
+        ...globalState.nature
       }));
-
     const navigation = useNavigation()
 
     return (
         <KeyboardDismissView>
-            <Box f={1}>
-                <Box h={50} w="100%" px="sm" my="sm">
+            <Box f={1} >
+                {/* <Box h={50} w="100%" px="sm" my="sm">
                     <TextInput style={styles.input} placeholder="Search..." selectionColor={theme.color.greenLighter} />
-                </Box>
-                {soundList.length > 0 &&
-                    <FlatList style={styles.list} data={soundList} renderItem={({item}) => (
+                </Box> */}
+                {(soundList.length > 0 || asmrList.length > 0 || natureList.length > 0) && 
+                    <FlatList style={styles.list} data={[...soundList, ...asmrList, ...natureList]} renderItem={({item}) => (
                         <TouchableOpacity onPress={() => navigation.navigate('Player', {data: item})}>
                         <Box h={90} p="xs" dir="row" align="center">
                         <Image
@@ -33,9 +38,9 @@ const LibraryScreen = () => {
                             source={{uri: item.artwork}}
                         />
                             <Box>
-                                <Text bold>{item.title}</Text>
-                                <Text size="sm">{item.duration}</Text>
-                                <Text size="sm">{item.url}</Text>
+                                <Text bold style={{color: colors.colors.text}}>{item.title}</Text>
+                                <Text size="sm" style={{color: colors.colors.border}}>{item.duration}</Text>
+                                <Text size="sm" style={{color: colors.colors.border}}>{item.url}</Text>
                             </Box>
                         </Box>
                         </TouchableOpacity>

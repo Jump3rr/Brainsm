@@ -8,10 +8,12 @@ import { useSelector } from "react-redux";
 import {IState} from "../../reducers";
 import { useNavigation } from '@react-navigation/core';
 import { IASMRReducer } from '../../reducers/asmrReducer';
+import { useTheme } from '@react-navigation/native';
 
 
 const ASMRScreen = () => {
 
+    const colors = useTheme();
     const { asmrList } = useSelector<IState, IASMRReducer>((globalState) => ({
         ...globalState.asmr,
       }));
@@ -33,9 +35,9 @@ const ASMRScreen = () => {
                             source={{uri: item.artwork}}
                         />
                             <Box>
-                                <Text bold>{item.title}</Text>
-                                <Text size="sm">{item.duration}</Text>
-                                <Text size="sm">{item.url}</Text>
+                                <Text bold style={{color: colors.colors.text}}>{item.title}</Text>
+                                <Text size="sm" style={{color: colors.colors.border}}>{item.duration}</Text>
+                                <Text size="sm" style={{color: colors.colors.border}}>{item.url}</Text>
                             </Box>
                         </Box>
                         </TouchableOpacity>

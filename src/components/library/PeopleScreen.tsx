@@ -8,10 +8,11 @@ import { useSelector } from "react-redux";
 import {IState} from "../../reducers";
 import { ISoundReducer } from '../../reducers/soundsReducer';
 import { useNavigation } from '@react-navigation/core';
-
+import { useTheme } from '@react-navigation/native';
 
 const PeopleScreen = () => {
 
+    const colors = useTheme();
     const { soundList } = useSelector<IState, ISoundReducer>((globalState) => ({
         ...globalState.sounds,
       }));
@@ -33,9 +34,9 @@ const PeopleScreen = () => {
                             source={{uri: item.artwork}}
                         />
                             <Box>
-                                <Text bold>{item.title}</Text>
-                                <Text size="sm">{item.duration}</Text>
-                                <Text size="sm">{item.url}</Text>
+                                <Text bold style={{color: colors.colors.text}}>{item.title}</Text>
+                                <Text size="sm" style={{color: colors.colors.border}}>{item.duration}</Text>
+                                <Text size="sm" style={{color: colors.colors.border}}>{item.url}</Text>
                             </Box>
                         </Box>
                         </TouchableOpacity>

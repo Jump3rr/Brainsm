@@ -5,11 +5,29 @@ import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { theme } from '../../constants/theme';
 import { useNavigation } from '@react-navigation/core';
 import { useTheme } from '@react-navigation/native';
+import { useSelector } from "react-redux";
+import {IState} from "../../reducers";
+import { ISoundReducer } from '../../reducers/soundsReducer';
+import { IASMRReducer } from '../../reducers/asmrReducer';
+import { INatureReducer } from '../../reducers/natureReducer';
 
 const HomeScreen = () => {
 
     const navigation = useNavigation()
     const colors = useTheme();
+
+    const { soundList, asmrList, natureList } = useSelector<IState, ISoundReducer & IASMRReducer & INatureReducer>((globalState) => ({
+        ...globalState.sounds,
+        ...globalState.asmr,
+        ...globalState.nature
+      }));
+
+    const ChooseRandom = ():number => {
+        const libraryLength = soundList.length + asmrList.length + natureList.length;
+        const choosed = Math.floor(Math.random() * (libraryLength));
+        return choosed;
+    }
+
     return (
         <Box f={1} center style={styles.mainBox}>
             <Image
@@ -28,8 +46,7 @@ const HomeScreen = () => {
             <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('ASMR')}>
                 <Text bold style={{color: colors.colors.text}} center>ASMR</Text>
             </TouchableOpacity>
-            {/* przenoszenie do funkcji ktora losuje liczbe z zakresu reduxa a nastepnie przenosi do playera z odpowiednimi parametrami */}
-            <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('Library')}> 
+            <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('Player', {data: [...soundList, ...asmrList, ...natureList][ChooseRandom()]})}> 
                 <Text bold style={{color: colors.colors.text}} center>Choose random sound</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('About')}>
