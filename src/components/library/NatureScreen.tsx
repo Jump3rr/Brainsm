@@ -7,8 +7,10 @@ import KeyboardDismissView from '../KeyboardDismissView';
 import { useSelector } from "react-redux";
 import {IState} from "../../reducers";
 import { INatureReducer } from '../../reducers/natureReducer';
-import { useNavigation } from '@react-navigation/core';
+//import { useNavigation } from '@react-navigation/core';
 import { useTheme } from '@react-navigation/native';
+import { usePlayerContext } from '../../contexts/PlayerContext';
+import { buildTime } from '../../tools/BuildTime';
 
 
 const NatureScreen = () => {
@@ -17,8 +19,9 @@ const NatureScreen = () => {
     const { natureList } = useSelector<IState, INatureReducer>((globalState) => ({
         ...globalState.nature,
       }));
+    const playerContext = usePlayerContext();
 
-    const navigation = useNavigation()
+    //const navigation = useNavigation()
 
     return (
         <KeyboardDismissView>
@@ -28,7 +31,8 @@ const NatureScreen = () => {
                 </Box>
                 {natureList.length > 0 &&
                     <FlatList style={styles.list} data={natureList} renderItem={({item}) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('Player', {data: item})}>
+                        // <TouchableOpacity onPress={() => navigation.navigate('Player', {data: item})}>
+                        <TouchableOpacity onPress={() => playerContext.play(item)}>
                         <Box h={90} p="xs" dir="row" align="center">
                         <Image
                             style={styles.images}
@@ -36,8 +40,8 @@ const NatureScreen = () => {
                         />
                             <Box>
                                 <Text bold style={{color: colors.colors.text}}>{item.title}</Text>
-                                <Text size="sm" style={{color: colors.colors.border}}>{item.duration}</Text>
-                                <Text size="sm" style={{color: colors.colors.border}}>{item.url}</Text>
+                                <Text size="sm" style={{color: colors.colors.border}}>{buildTime(item.duration)}</Text>
+                                {/* <Text size="sm" style={{color: colors.colors.border}}>{item.url}</Text> */}
                             </Box>
                         </Box>
                         </TouchableOpacity>

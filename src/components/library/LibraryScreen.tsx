@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, TouchableOpacity, Image } from 'react-native';
 import {Box, Text } from 'react-native-design-utility';
-import { FlatList, TextInput } from 'react-native-gesture-handler';
+import { FlatList } from 'react-native-gesture-handler';
 import { theme } from '../../constants/theme';
 import KeyboardDismissView from '../KeyboardDismissView';
 import { useSelector } from "react-redux";
@@ -10,7 +10,8 @@ import { ISoundReducer } from '../../reducers/soundsReducer';
 import { IASMRReducer } from '../../reducers/asmrReducer';
 import { INatureReducer } from '../../reducers/natureReducer';
 import { useTheme } from '@react-navigation/native';
-import { useNavigation } from '@react-navigation/core';
+import { usePlayerContext } from '../../contexts/PlayerContext';
+import { buildTime } from '../../tools/BuildTime';
 
 
 const LibraryScreen = () => {
@@ -21,7 +22,7 @@ const LibraryScreen = () => {
         ...globalState.asmr,
         ...globalState.nature
       }));
-    const navigation = useNavigation()
+    const playerContext = usePlayerContext();
 
     return (
         <KeyboardDismissView>
@@ -31,7 +32,7 @@ const LibraryScreen = () => {
                 </Box> */}
                 {(soundList.length > 0 || asmrList.length > 0 || natureList.length > 0) && 
                     <FlatList style={styles.list} data={[...soundList, ...asmrList, ...natureList]} renderItem={({item}) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('Player', {data: item})}>
+                        <TouchableOpacity onPress={() => playerContext.play(item)}>
                         <Box h={90} p="xs" dir="row" align="center">
                         <Image
                             style={styles.images}
@@ -39,8 +40,7 @@ const LibraryScreen = () => {
                         />
                             <Box>
                                 <Text bold style={{color: colors.colors.text}}>{item.title}</Text>
-                                <Text size="sm" style={{color: colors.colors.border}}>{item.duration}</Text>
-                                <Text size="sm" style={{color: colors.colors.border}}>{item.url}</Text>
+                                <Text size="sm" style={{color: colors.colors.border}}>{buildTime(item.duration)}</Text>
                             </Box>
                         </Box>
                         </TouchableOpacity>

@@ -6,23 +6,40 @@ import { PlayerContext } from '../../contexts/PlayerContext';
 import { usePlayerContext } from '../../contexts/PlayerContext';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { theme } from '../../constants/theme';
+import { useNavigation } from '@react-navigation/core';
+import { useTheme } from '@react-navigation/native';
 
 const MiniPlayer = () => {
     const playerContext = usePlayerContext();
+    const navigation = useNavigation();
+    const colors = useTheme();
 
     if(playerContext.isEmpty || !playerContext.currentTrack) {
         return null;
     }
+    const styles = StyleSheet.create({
+        photo: {
+          width: 50,
+          height: 50,
+          marginRight: 10,
+          borderRadius: 20,
+        },
+        icons: {
+            color: colors.colors.text,
+            marginHorizontal: 15,
+        },
+    });
 
     return (
-        <Box h={75} bg='white' px='sm' style={{borderTopWidth: 1, borderTopColor: 'lightgrey'}}>
+        <TouchableOpacity onPress={() => navigation.navigate('Player')}>
+        <Box h={75} bg={colors.colors.primary} px='sm' style={{borderTopWidth: 1, borderTopColor: 'lightgrey'}}>
             <Box f={1} dir='row' align='center' justify='between'>
             <Image
                 style={styles.photo}
                 source={{uri: playerContext.currentTrack.artwork}}
             />
                 <Box f={1} mr={10}>
-                    <Text numberOfLines={1}>{playerContext.currentTrack.title}</Text>
+                    <Text color={colors.colors.text} numberOfLines={1}>{playerContext.currentTrack.title}</Text>
                 </Box>
                 <Box>
                     {playerContext.isPaused && (
@@ -37,31 +54,19 @@ const MiniPlayer = () => {
                     )}
                     {playerContext.isStopped && (
                         <TouchableOpacity onPress={() => null}>
-                            <Text>Stop</Text>
+                            <Text color={colors.colors.text}>Stop</Text>
                         </TouchableOpacity>
                     )}
                 </Box>
                 <Box>
                     <TouchableOpacity onPress={() => playerContext.seekTo()}>
-                        <Text>Forward</Text>
+                        <Text color={colors.colors.text}>Forward</Text>
                     </TouchableOpacity>
                 </Box>
             </Box>
         </Box>
+        </TouchableOpacity>
     )
 }
-
-const styles = StyleSheet.create({
-    photo: {
-      width: 50,
-      height: 50,
-      marginRight: 10,
-      borderRadius: 20,
-    },
-    icons: {
-        color: theme.color.black,
-        marginHorizontal: 15,
-    },
-});
 
 export default MiniPlayer;

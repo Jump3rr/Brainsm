@@ -46,6 +46,10 @@ export const PlayerContextProvider: FC = (props) => {
             return;
         }
 
+        if(currentTrack && track.title !== currentTrack.title) {
+            await RNTrackPlayer.reset();
+        }
+
         await RNTrackPlayer.add([track]);
         setCurrentTrack(track)
         await RNTrackPlayer.play();

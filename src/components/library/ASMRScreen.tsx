@@ -9,6 +9,8 @@ import {IState} from "../../reducers";
 import { useNavigation } from '@react-navigation/core';
 import { IASMRReducer } from '../../reducers/asmrReducer';
 import { useTheme } from '@react-navigation/native';
+import { usePlayerContext } from '../../contexts/PlayerContext';
+import { buildTime } from '../../tools/BuildTime';
 
 
 const ASMRScreen = () => {
@@ -17,8 +19,9 @@ const ASMRScreen = () => {
     const { asmrList } = useSelector<IState, IASMRReducer>((globalState) => ({
         ...globalState.asmr,
       }));
+    const playerContext = usePlayerContext();
 
-    const navigation = useNavigation()
+    //const navigation = useNavigation()
 
     return (
         <KeyboardDismissView>
@@ -28,7 +31,8 @@ const ASMRScreen = () => {
                 </Box>
                 {asmrList.length > 0 &&
                     <FlatList style={styles.list} data={asmrList} renderItem={({item}) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('Player', {data: item})}>
+                        // <TouchableOpacity onPress={() => navigation.navigate('Player', {data: item})}>
+                        <TouchableOpacity onPress={() => playerContext.play(item)}>
                         <Box h={90} p="xs" dir="row" align="center">
                         <Image
                             style={styles.images}
@@ -36,8 +40,7 @@ const ASMRScreen = () => {
                         />
                             <Box>
                                 <Text bold style={{color: colors.colors.text}}>{item.title}</Text>
-                                <Text size="sm" style={{color: colors.colors.border}}>{item.duration}</Text>
-                                <Text size="sm" style={{color: colors.colors.border}}>{item.url}</Text>
+                                <Text size="sm" style={{color: colors.colors.border}}>{buildTime(item.duration)}</Text>
                             </Box>
                         </Box>
                         </TouchableOpacity>

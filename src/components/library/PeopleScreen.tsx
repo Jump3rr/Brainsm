@@ -7,8 +7,9 @@ import KeyboardDismissView from '../KeyboardDismissView';
 import { useSelector } from "react-redux";
 import {IState} from "../../reducers";
 import { ISoundReducer } from '../../reducers/soundsReducer';
-import { useNavigation } from '@react-navigation/core';
 import { useTheme } from '@react-navigation/native';
+import { usePlayerContext } from '../../contexts/PlayerContext';
+import { buildTime } from '../../tools/BuildTime';
 
 const PeopleScreen = () => {
 
@@ -16,8 +17,7 @@ const PeopleScreen = () => {
     const { soundList } = useSelector<IState, ISoundReducer>((globalState) => ({
         ...globalState.sounds,
       }));
-
-    const navigation = useNavigation()
+    const playerContext = usePlayerContext();
 
     return (
         <KeyboardDismissView>
@@ -27,7 +27,7 @@ const PeopleScreen = () => {
                 </Box>
                 {soundList.length > 0 &&
                     <FlatList style={styles.list} data={soundList} renderItem={({item}) => (
-                        <TouchableOpacity onPress={() => navigation.navigate('Player', {data: item})}>
+                        <TouchableOpacity onPress={() => playerContext.play(item)}>
                         <Box h={90} p="xs" dir="row" align="center">
                         <Image
                             style={styles.images}
@@ -35,8 +35,7 @@ const PeopleScreen = () => {
                         />
                             <Box>
                                 <Text bold style={{color: colors.colors.text}}>{item.title}</Text>
-                                <Text size="sm" style={{color: colors.colors.border}}>{item.duration}</Text>
-                                <Text size="sm" style={{color: colors.colors.border}}>{item.url}</Text>
+                                <Text size="sm" style={{color: colors.colors.border}}>{buildTime(item.duration)}</Text>
                             </Box>
                         </Box>
                         </TouchableOpacity>
