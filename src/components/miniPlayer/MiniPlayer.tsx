@@ -32,7 +32,7 @@ const MiniPlayer = () => {
 
     return (
         <TouchableOpacity onPress={() => navigation.navigate('Player')}>
-        <Box h={75} bg={colors.colors.primary} px='sm' style={{borderTopWidth: 1, borderTopColor: 'lightgrey'}}>
+        <Box h={75} bg={colors.colors.background} px='sm' style={{borderTopWidth: 1, borderTopColor: colors.colors.text}}>
             <Box f={1} dir='row' align='center' justify='between'>
             <Image
                 style={styles.photo}

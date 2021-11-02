@@ -22,13 +22,16 @@ const AboutScreen = () => {
             <Text style={{color: colors.colors.text}}>About Screen</Text>
             <Text style={{color: colors.colors.text}}>Version: 0.9.1</Text>
             <Text bold style={{color: colors.colors.text}}>Settings:</Text>
-            <Switch
-                trackColor={{ false: colors.colors.card, true: colors.colors.border }}
-                thumbColor={isDarkModeOn ? colors.colors.text : colors.colors.text}
-                ios_backgroundColor="#3e3e3e"
-                onValueChange={toggleSwitch}
-                value={isDarkModeOn}
-            />
+            <Box flexDirection='row'>
+                <Text style={{color: colors.colors.text}}>Dark mode:</Text>
+                <Switch
+                    trackColor={{ false: colors.colors.card, true: colors.colors.border }}
+                    thumbColor={isDarkModeOn ? colors.colors.text : colors.colors.text}
+                    ios_backgroundColor="#3e3e3e"
+                    onValueChange={toggleSwitch}
+                    value={isDarkModeOn}
+                />
+            </Box>
         </Box>
     );
 }

@@ -25,7 +25,7 @@ export default function Player() {
   return (
     <SafeAreaView style={styles.main}>
       <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={{bottom: 20, top:20, left: 20, right:20}}>
-        <Icon name="chevron-down" size={30} />
+        <Icon name="chevron-down" size={30} color={'white'} />
       </TouchableOpacity>
       <Box style={styles.container}>
       <Image
@@ -33,7 +33,7 @@ export default function Player() {
         source={{uri: track.artwork}}
       />
       <Box style={styles.topBar}>
-        <Text size={28} bold>{track.title}</Text>
+        <Text size={28} bold color='white'>{track.title}</Text>
       </Box>
         <Box style={styles.playerButtons}>
           <TouchableOpacity onPress={() => playerContext.pause()}>
