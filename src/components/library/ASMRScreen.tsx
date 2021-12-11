@@ -26,10 +26,10 @@ const ASMRScreen = () => {
     return (
         <KeyboardDismissView>
             <Box f={1}>
-                <Box h={50} w="100%" px="sm" my="sm">
-                    <TextInput style={styles.input} placeholder="Search..." selectionColor={theme.color.greenLighter} />
-                </Box>
-                {asmrList.length > 0 &&
+            <Box p="xl" align="center">
+            <Text bold style={{color: colors.colors.text}}>Coming soon...</Text>
+            </Box>
+                {/* {asmrList.length > 0 &&
                     <FlatList style={styles.list} data={asmrList} renderItem={({item}) => (
                         // <TouchableOpacity onPress={() => navigation.navigate('Player', {data: item})}>
                         <TouchableOpacity onPress={() => playerContext.play(item)}>
@@ -45,7 +45,7 @@ const ASMRScreen = () => {
                         </Box>
                         </TouchableOpacity>
                     )} keyExtractor={(item) => String(item.title)} />
-                }
+                } */}
             </Box>
         </KeyboardDismissView>
     );

@@ -26,9 +26,9 @@ const NatureScreen = () => {
     return (
         <KeyboardDismissView>
             <Box f={1}>
-                <Box h={50} w="100%" px="sm" my="sm">
+                {/* <Box h={50} w="100%" px="sm" my="sm">
                     <TextInput style={styles.input} placeholder="Search..." selectionColor={theme.color.greenLighter} />
-                </Box>
+                </Box> */}
                 {natureList.length > 0 &&
                     <FlatList style={styles.list} data={natureList} renderItem={({item}) => (
                         // <TouchableOpacity onPress={() => navigation.navigate('Player', {data: item})}>

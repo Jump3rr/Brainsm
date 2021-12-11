@@ -10,6 +10,7 @@ import {IState} from "../../reducers";
 import { ISoundReducer } from '../../reducers/soundsReducer';
 import { IASMRReducer } from '../../reducers/asmrReducer';
 import { INatureReducer } from '../../reducers/natureReducer';
+import { usePlayerContext } from '../../contexts/PlayerContext';
 
 const HomeScreen = () => {
 
@@ -27,6 +28,8 @@ const HomeScreen = () => {
         const choosed = Math.floor(Math.random() * (libraryLength));
         return choosed;
     }
+    const playerContext = usePlayerContext();
+    let listOfAllItems: any[] = [...soundList, ...asmrList, ...natureList];
 
     return (
         <Box f={1} center style={styles.mainBox}>
@@ -46,7 +49,8 @@ const HomeScreen = () => {
             <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('ASMR')}>
                 <Text bold style={{color: colors.colors.text}} center>ASMR</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('Player', {data: [...soundList, ...asmrList, ...natureList][ChooseRandom()]})}> 
+            {/* <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('Player', {data: [...soundList, ...asmrList, ...natureList][ChooseRandom()]})}>  */}
+            <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => playerContext.play(listOfAllItems[ChooseRandom()])}>
                 <Text bold style={{color: colors.colors.text}} center>Choose random sound</Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('About')}>

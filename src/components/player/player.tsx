@@ -11,6 +11,7 @@ import ProgressSlider from '../ProgressSlider';
 import { PlayerContext, usePlayerContext } from '../../contexts/PlayerContext';
 import { NavigationProp, useRoute, RouteProp, useNavigation } from '@react-navigation/core';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import { theme } from '../../constants/theme';
 
 export default function Player() {
@@ -36,8 +37,8 @@ export default function Player() {
         <Text size={28} bold color='white'>{track.title}</Text>
       </Box>
         <Box style={styles.playerButtons}>
-          <TouchableOpacity onPress={() => playerContext.pause()}>
-            <Icon name="step-backward" size={40} style={styles.icons} />
+          <TouchableOpacity onPress={() => playerContext.seekTo(-15)}>
+            <Icon2 name="replay-10" size={40} style={styles.icons} />
           </TouchableOpacity>
           {!playerContext.isPlaying && (
           <TouchableOpacity onPress={() => playerContext.play(track)}> 
@@ -49,8 +50,8 @@ export default function Player() {
             <Icon name="pause" size={60} style={styles.icons} />
           </TouchableOpacity>
           )}
-          <TouchableOpacity onPress={() => playerContext.pause()}>
-            <Icon name="step-forward" size={40} style={styles.icons} />
+          <TouchableOpacity onPress={() => playerContext.seekTo(15)}>
+            <Icon2 name="forward-10" size={40} style={styles.icons} />
           </TouchableOpacity>
         </Box>
         <ProgressSlider />

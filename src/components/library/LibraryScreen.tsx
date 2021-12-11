@@ -31,7 +31,7 @@ const LibraryScreen = () => {
                     <TextInput style={styles.input} placeholder="Search..." selectionColor={theme.color.greenLighter} />
                 </Box> */}
                 {(soundList.length > 0 || asmrList.length > 0 || natureList.length > 0) && 
-                    <FlatList style={styles.list} data={[...soundList, ...asmrList, ...natureList]} renderItem={({item}) => (
+                    <FlatList style={styles.list} data={[...soundList, ...asmrList, ...natureList].sort((a,b) => (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0))} renderItem={({item}) => (
                         <TouchableOpacity onPress={() => playerContext.play(item)}>
                         <Box h={90} p="xs" dir="row" align="center">
                         <Image

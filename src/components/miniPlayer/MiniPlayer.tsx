@@ -59,8 +59,8 @@ const MiniPlayer = () => {
                     )}
                 </Box>
                 <Box>
-                    <TouchableOpacity onPress={() => playerContext.seekTo()}>
-                        <Text color={colors.colors.text}>Forward</Text>
+                    <TouchableOpacity onPress={() => playerContext.goTo(0)}>
+                        <Icon name="refresh" size={35} style={styles.icons} />
                     </TouchableOpacity>
                 </Box>
             </Box>
