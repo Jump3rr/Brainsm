@@ -37,7 +37,7 @@ export default function Player() {
         <Text size={28} bold color='white'>{track.title}</Text>
       </Box>
         <Box style={styles.playerButtons}>
-          <TouchableOpacity onPress={() => playerContext.seekTo(-15)}>
+          <TouchableOpacity onPress={() => playerContext.seekTo(-10)}>
             <Icon2 name="replay-10" size={40} style={styles.icons} />
           </TouchableOpacity>
           {!playerContext.isPlaying && (
@@ -50,7 +50,7 @@ export default function Player() {
             <Icon name="pause" size={60} style={styles.icons} />
           </TouchableOpacity>
           )}
-          <TouchableOpacity onPress={() => playerContext.seekTo(15)}>
+          <TouchableOpacity onPress={() => playerContext.seekTo(10)}>
             <Icon2 name="forward-10" size={40} style={styles.icons} />
           </TouchableOpacity>
         </Box>

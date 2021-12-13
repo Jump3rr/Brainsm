@@ -26,8 +26,12 @@ DerivedData
 build/
 .idea
 .gradle
+.hprof
 local.properties
 *.iml
+
+android/
+*.hprof
 
 # node.js
 #

@@ -11,7 +11,7 @@ import { INatureReducer } from '../../reducers/natureReducer';
 import { useTheme } from '@react-navigation/native';
 import { usePlayerContext } from '../../contexts/PlayerContext';
 import { buildTime } from '../../tools/BuildTime';
-
+import EmptyList from '../EmptyList';
 
 const NatureScreen = () => {
 
@@ -46,6 +46,9 @@ const NatureScreen = () => {
                         </Box>
                         </TouchableOpacity>
                     )} keyExtractor={(item) => String(item.title)} />
+                }
+                {!(natureList.length > 0) && 
+                <EmptyList />
                 }
             </Box>
         </KeyboardDismissView>

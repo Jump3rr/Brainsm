@@ -10,6 +10,7 @@ import { ISoundReducer } from '../../reducers/soundsReducer';
 import { useTheme } from '@react-navigation/native';
 import { usePlayerContext } from '../../contexts/PlayerContext';
 import { buildTime } from '../../tools/BuildTime';
+import EmptyList from '../EmptyList';
 
 const PeopleScreen = () => {
 
@@ -40,6 +41,9 @@ const PeopleScreen = () => {
                         </Box>
                         </TouchableOpacity>
                     )} keyExtractor={(item) => String(item.title)} />
+                }
+                {!(soundList.length > 0) && 
+                <EmptyList />
                 }
             </Box>
         </KeyboardDismissView>

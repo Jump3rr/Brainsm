@@ -21,6 +21,7 @@ import { PlayerContextProvider } from './src/contexts/PlayerContext';
 import store from './src/tools/store';
 import { Provider } from 'react-redux';
 import NavigationCon from './src/navigators/NavigationContainer';
+import {BannerAd, BannerAdSize} from '@react-native-firebase/admob';
 
 const App = () => {
   const [isReady, setIsReady] = useState<Boolean>(true);
@@ -46,6 +47,12 @@ const App = () => {
   return (
     <UtilityThemeProvider theme={theme}>
       <Provider store={store}>
+        <BannerAd
+          unitId='ca-app-pub-3940256099942544/6300978111'
+          size={BannerAdSize.SMART_BANNER}
+          requestOptions={{
+          requestNonPersonalizedAdsOnly: true,}}
+          />
         {isReady ? (
         <PlayerContextProvider>
           <NavigationCon />

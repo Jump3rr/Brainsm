@@ -12,6 +12,7 @@ import { INatureReducer } from '../../reducers/natureReducer';
 import { useTheme } from '@react-navigation/native';
 import { usePlayerContext } from '../../contexts/PlayerContext';
 import { buildTime } from '../../tools/BuildTime';
+import EmptyList from '../EmptyList';
 
 
 const LibraryScreen = () => {
@@ -45,6 +46,9 @@ const LibraryScreen = () => {
                         </Box>
                         </TouchableOpacity>
                     )} keyExtractor={(item) => String(item.title)} />
+                }
+                {!(soundList.length > 0 || asmrList.length > 0 || natureList.length > 0) && 
+                <EmptyList />
                 }
             </Box>
         </KeyboardDismissView>
