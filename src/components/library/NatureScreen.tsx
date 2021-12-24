@@ -41,7 +41,6 @@ const NatureScreen = () => {
                             <Box>
                                 <Text bold style={{color: colors.colors.text}}>{item.title}</Text>
                                 <Text size="sm" style={{color: colors.colors.border}}>{buildTime(item.duration)}</Text>
-                                {/* <Text size="sm" style={{color: colors.colors.border}}>{item.url}</Text> */}
                             </Box>
                         </Box>
                         </TouchableOpacity>

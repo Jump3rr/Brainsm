@@ -48,7 +48,7 @@ const App = () => {
     <UtilityThemeProvider theme={theme}>
       <Provider store={store}>
         <BannerAd
-          unitId='ca-app-pub-3940256099942544/6300978111'
+          unitId='ca-app-pub-9930822065651705/4546713157'
           size={BannerAdSize.SMART_BANNER}
           requestOptions={{
           requestNonPersonalizedAdsOnly: true,}}
