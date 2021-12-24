@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
     height: 40
   },
   timers: {
-    fontSize: 25
+    fontSize: 25,
+    color: '#fff'
   }
 });

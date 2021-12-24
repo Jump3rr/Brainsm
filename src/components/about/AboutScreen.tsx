@@ -35,7 +35,7 @@ const AboutScreen = () => {
             <TouchableOpacity onPress={() => Linking.openURL('mailto:j3rdev9@gmail.com')}>
                 <Text style={{color: colors.colors.text}}>j3rdev9@gmail.com</Text>
             </TouchableOpacity>
-            <Text mt={'md'} style={{color: colors.colors.text}}>Version: 0.9.2</Text>
+            <Text mt={'md'} style={{color: colors.colors.text}}>Version: 0.9.22</Text>
         </Box>
     );
 }
