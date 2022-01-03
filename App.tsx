@@ -14,14 +14,13 @@ import { NavigationContainer } from '@react-navigation/native';
 import { BrainsmDarkTheme, BrainsmDefaultTheme } from './src/tools/themes';
 import { UtilityThemeProvider } from 'react-native-design-utility';
 import { theme } from './src/constants/theme';
-import TrackPlayer from 'react-native-track-player';
+import TrackPlayer, {Capability} from 'react-native-track-player';
 import { Box } from 'react-native-design-utility';
 import { ActivityIndicator } from 'react-native';
 import { PlayerContextProvider } from './src/contexts/PlayerContext';
 import store from './src/tools/store';
 import { Provider } from 'react-redux';
 import NavigationCon from './src/navigators/NavigationContainer';
-import {BannerAd, BannerAdSize} from '@react-native-firebase/admob';
 
 const App = () => {
   const [isReady, setIsReady] = useState<Boolean>(true);
@@ -32,13 +31,15 @@ const App = () => {
         //TrackPlayer.registerPlaybackService(() => trackPlayerServices);
         TrackPlayer.updateOptions({
           capabilities: [
-            TrackPlayer.CAPABILITY_PLAY,
-            TrackPlayer.CAPABILITY_PAUSE,
-            TrackPlayer.CAPABILITY_STOP,
-            TrackPlayer.CAPABILITY_JUMP_FORWARD,
-            TrackPlayer.CAPABILITY_JUMP_BACKWARD,
+            Capability.Play,
+            Capability.Pause,
+            Capability.Stop,
+            Capability.JumpForward,
+            Capability.JumpBackward,
           ],
-          jumpInterval: 30,
+          forwardJumpInterval: 10,
+          backwardJumpInterval: 10,
+          compactCapabilities: [Capability.Play, Capability.Pause],
         })
         setIsReady(true);
       })
@@ -47,12 +48,6 @@ const App = () => {
   return (
     <UtilityThemeProvider theme={theme}>
       <Provider store={store}>
-        <BannerAd
-          unitId='ca-app-pub-9930822065651705/4546713157'
-          size={BannerAdSize.SMART_BANNER}
-          requestOptions={{
-          requestNonPersonalizedAdsOnly: true,}}
-          />
         {isReady ? (
         <PlayerContextProvider>
           <NavigationCon />

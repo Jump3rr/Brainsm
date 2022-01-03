@@ -11,6 +11,7 @@ import { ISoundReducer } from '../../reducers/soundsReducer';
 import { IASMRReducer } from '../../reducers/asmrReducer';
 import { INatureReducer } from '../../reducers/natureReducer';
 import { usePlayerContext } from '../../contexts/PlayerContext';
+import Ads from '../../tools/LoadAdds';
 
 const HomeScreen = () => {
 

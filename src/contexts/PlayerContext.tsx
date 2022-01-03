@@ -1,5 +1,6 @@
 import React, {useState, useEffect, createContext, useContext, FC} from 'react';
-import RNTrackPlayer, {STATE_NONE, STATE_PAUSED, STATE_PLAYING, STATE_STOPPED, Track, TrackPlayerEvents, State as TrackPlayerState} from 'react-native-track-player';
+import RNTrackPlayer, { Track, State as TrackPlayerState, usePlaybackState } from 'react-native-track-player';
+
 
 interface PlayerContextType {
     isPlaying: boolean;
@@ -7,6 +8,7 @@ interface PlayerContextType {
     isStopped: boolean;
     isEmpty: boolean;
     currentTrack: Track | null;
+    interval: any;
     play: (track?: Track) => void;
     pause: () => void;
     seekTo: (amount?: number) => void;
@@ -19,6 +21,7 @@ export const PlayerContext = createContext<PlayerContextType>({
     isStopped: false,
     isEmpty: true,
     currentTrack: null,
+    interval: null,
     play: () => null,
     pause: () => null,
     seekTo: () => null,
@@ -26,16 +29,21 @@ export const PlayerContext = createContext<PlayerContextType>({
 })
 
 export const PlayerContextProvider: FC = (props) => {
-    const [playerState, setPlayerState] = useState<null | TrackPlayerState>(
-        null,
-    );
+    
+    const playerState = usePlaybackState();
     const [currentTrack, setCurrentTrack] = useState<null | Track>(null);
+    
 
-    useEffect(() => {
-        const listener = RNTrackPlayer.addEventListener('playback-state', ({state}: {state: TrackPlayerState}) => {setPlayerState(state)},);
-        return () => {
-            listener.remove();
+    const setupIfNecessary = async () => {
+        const currentTrack = await RNTrackPlayer.getCurrentTrack();
+        if (currentTrack !== null) {
+          return;
         }
+
+    }
+        
+    useEffect(() => {
+        setupIfNecessary();
     }, [])
 
     const play = async (track?: Track) => {
@@ -69,15 +77,16 @@ export const PlayerContextProvider: FC = (props) => {
     };
 
     const value: PlayerContextType = {
-        isPlaying: playerState === STATE_PLAYING,
-        isPaused: playerState === STATE_PAUSED,
-        isStopped: playerState === STATE_STOPPED,
+        isPlaying: playerState === TrackPlayerState.Playing,
+        isPaused: playerState === TrackPlayerState.Paused,
+        isStopped: playerState === TrackPlayerState.Stopped,
         isEmpty: playerState === null,
+        interval: null,
         currentTrack,
         pause,
         play,
         seekTo,
-        goTo
+        goTo,
     }
         
 

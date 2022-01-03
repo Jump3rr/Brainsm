@@ -1,26 +1,35 @@
-import { executeReducerBuilderCallback } from '@reduxjs/toolkit/dist/mapBuilders';
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, SafeAreaView, StatusBar, Image } from 'react-native';
 import {Box, Text} from 'react-native-design-utility';
-import { StackScreenProps } from '@react-navigation/stack';
-import TrackPlayer from 'react-native-track-player';
-import {AppRegistry} from 'react-native'; 
-import { useEffect, useState } from 'react';
-import Slider from '@react-native-community/slider';
+import TrackPlayer, { RepeatMode } from 'react-native-track-player';
+import { useState } from 'react';
 import ProgressSlider from '../ProgressSlider';
-import { PlayerContext, usePlayerContext } from '../../contexts/PlayerContext';
-import { NavigationProp, useRoute, RouteProp, useNavigation } from '@react-navigation/core';
+import { usePlayerContext } from '../../contexts/PlayerContext';
+import { useNavigation } from '@react-navigation/core';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
+import Icon3 from 'react-native-vector-icons/SimpleLineIcons';
 import { theme } from '../../constants/theme';
 
 export default function Player() {
   const playerContext = usePlayerContext();
   const navigation = useNavigation();
-  //const sound = route?.params.data;
   const track = playerContext.currentTrack;
   if (!track) {
     return null;
+  }
+
+  const [isLooped, setLooped] = useState(false);
+
+  const ChangeLoopMode = () => {
+    setLooped(!isLooped);
+
+    if(isLooped) {
+      TrackPlayer.setRepeatMode(RepeatMode.Off)
+    }
+    else {
+      TrackPlayer.setRepeatMode(RepeatMode.Track)
+    }
   }
 
   return (
@@ -53,6 +62,17 @@ export default function Player() {
           <TouchableOpacity onPress={() => playerContext.seekTo(10)}>
             <Icon2 name="forward-10" size={40} style={styles.icons} />
           </TouchableOpacity>
+          {!isLooped && (
+          <TouchableOpacity onPress={() => ChangeLoopMode()}>
+            <Icon3 name="loop" size={40} style={styles.icons} />
+          </TouchableOpacity>
+          )}
+          {isLooped && (
+          <TouchableOpacity onPress={() => ChangeLoopMode()}>
+          {/* <TouchableOpacity onPress={() => playerContext.changeLoopMode()}> */}
+            <Icon3 name="loop" size={40} style={styles.iconsOn} />
+          </TouchableOpacity>
+          )}
         </Box>
         <ProgressSlider />
         {/* <Box style={styles.separator} /> */}
@@ -99,6 +119,10 @@ const styles = StyleSheet.create({
   },
   icons: {
     color: theme.color.white,
+    marginHorizontal: 15,
+  },
+  iconsOn: {
+    color: theme.color.green,
     marginHorizontal: 15,
   },
   images: {

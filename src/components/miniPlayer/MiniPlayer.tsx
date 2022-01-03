@@ -1,11 +1,8 @@
 import React from 'react';
 import { TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { Box, Text } from 'react-native-design-utility';
-import seekTo from 'react-native-track-player';
-import { PlayerContext } from '../../contexts/PlayerContext';
 import { usePlayerContext } from '../../contexts/PlayerContext';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { theme } from '../../constants/theme';
 import { useNavigation } from '@react-navigation/core';
 import { useTheme } from '@react-navigation/native';
 
@@ -54,7 +51,7 @@ const MiniPlayer = () => {
                     )}
                     {playerContext.isStopped && (
                         <TouchableOpacity onPress={() => null}>
-                            <Text color={colors.colors.text}>Stop</Text>
+                            <Icon name="stop" size={35} style={styles.icons} />
                         </TouchableOpacity>
                     )}
                 </Box>
