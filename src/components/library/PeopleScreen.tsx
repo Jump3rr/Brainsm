@@ -11,6 +11,8 @@ import { useTheme } from '@react-navigation/native';
 import { usePlayerContext } from '../../contexts/PlayerContext';
 import { buildTime } from '../../tools/BuildTime';
 import EmptyList from '../EmptyList';
+import BannerAds from '../../tools/BannerAds';
+import InterstitialAds from '../../tools/InterstitialAds';
 
 const PeopleScreen = () => {
 
@@ -46,6 +48,8 @@ const PeopleScreen = () => {
                 <EmptyList />
                 }
             </Box>
+            {InterstitialAds()}
+            <BannerAds />
         </KeyboardDismissView>
     );
 }

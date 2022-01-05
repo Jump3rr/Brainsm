@@ -21,9 +21,31 @@ import { PlayerContextProvider } from './src/contexts/PlayerContext';
 import store from './src/tools/store';
 import { Provider } from 'react-redux';
 import NavigationCon from './src/navigators/NavigationContainer';
+import { AdsConsent, AdsConsentStatus  } from '@react-native-firebase/admob';
 
 const App = () => {
   const [isReady, setIsReady] = useState<Boolean>(true);
+  const EUC = async() => { 
+    const consentInfo = await AdsConsent.requestInfoUpdate(['pub-9930822065651705']);
+
+    if (
+      consentInfo.isRequestLocationInEeaOrUnknown &&
+      consentInfo.status === AdsConsentStatus.UNKNOWN
+    ) {
+      const formResult = await AdsConsent.showForm({
+        privacyPolicy: 'https://invertase.io/privacy-policy',
+        withPersonalizedAds: true,
+        withNonPersonalizedAds: true,
+      });
+
+      if (formResult.userPrefersAdFree) {
+        // Handle the users request, e.g. redirect to a paid for version of the app
+      }
+      
+      // The user requested non-personalized or personalized ads
+      const status = formResult.status;
+    }
+  }
 
   useEffect(() => {
       TrackPlayer.setupPlayer()
@@ -41,6 +63,7 @@ const App = () => {
           backwardJumpInterval: 10,
           compactCapabilities: [Capability.Play, Capability.Pause],
         })
+        EUC();
         setIsReady(true);
       })
   },[]);

@@ -17,7 +17,7 @@ import { getDarkMode } from '../actions/darkModeActions';
 import { useSelector } from "react-redux";
 import {IState} from '../reducers'
 import { IDarkMode } from '../reducers/darkModeReducer';
-import Ads from '../tools/LoadAdds';
+import BannerAds from '../tools/BannerAds';
 
 const NavigationCon = () => {
   type GetDarkMode = ReturnType<typeof getDarkMode>;
@@ -33,7 +33,7 @@ const NavigationCon = () => {
   return (
           <NavigationContainer theme={ isDarkModeOn ? BrainsmDarkTheme : BrainsmDefaultTheme}>
             <MainStackNavigator />
-            <Ads />
+            {/* <BannerAds /> */}
           </NavigationContainer>
   );
 };

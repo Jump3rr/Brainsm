@@ -11,6 +11,8 @@ import { IASMRReducer } from '../../reducers/asmrReducer';
 import { useTheme } from '@react-navigation/native';
 import { usePlayerContext } from '../../contexts/PlayerContext';
 import { buildTime } from '../../tools/BuildTime';
+import BannerAds from '../../tools/BannerAds';
+import InterstitialAds from '../../tools/InterstitialAds';
 
 
 const ASMRScreen = () => {
@@ -47,6 +49,8 @@ const ASMRScreen = () => {
                     )} keyExtractor={(item) => String(item.title)} />
                 } */}
             </Box>
+            {InterstitialAds()}
+            <BannerAds />
         </KeyboardDismissView>
     );
 }

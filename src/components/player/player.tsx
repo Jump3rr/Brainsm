@@ -10,6 +10,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Icon2 from 'react-native-vector-icons/MaterialIcons';
 import Icon3 from 'react-native-vector-icons/SimpleLineIcons';
 import { theme } from '../../constants/theme';
+import BannerAds from '../../tools/BannerAds';
 
 export default function Player() {
   const playerContext = usePlayerContext();
@@ -34,6 +35,7 @@ export default function Player() {
 
   return (
     <SafeAreaView style={styles.main}>
+      <Box style={styles.mainBox}>
       <TouchableOpacity onPress={() => navigation.goBack()} hitSlop={{bottom: 20, top:20, left: 20, right:20}}>
         <Icon name="chevron-down" size={30} color={'white'} />
       </TouchableOpacity>
@@ -77,6 +79,8 @@ export default function Player() {
         <ProgressSlider />
         {/* <Box style={styles.separator} /> */}
       </Box>
+      </Box>
+      <BannerAds />
     </SafeAreaView>
 
   );
@@ -84,6 +88,9 @@ export default function Player() {
 
 const styles = StyleSheet.create({
   main: {
+    flex: 1,
+  },
+  mainBox: {
     flex: 1,
     padding: 20,
   },

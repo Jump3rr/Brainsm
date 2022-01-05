@@ -11,7 +11,7 @@ import { ISoundReducer } from '../../reducers/soundsReducer';
 import { IASMRReducer } from '../../reducers/asmrReducer';
 import { INatureReducer } from '../../reducers/natureReducer';
 import { usePlayerContext } from '../../contexts/PlayerContext';
-import Ads from '../../tools/LoadAdds';
+import Ads from '../../tools/BannerAds';
 
 const HomeScreen = () => {
 
@@ -57,6 +57,7 @@ const HomeScreen = () => {
             <TouchableOpacity style={[styles.listElement, {borderColor: colors.colors.text}]} onPress={() => navigation.navigate('About')}>
                 <Text bold style={{color: colors.colors.text}} center>About</Text>
             </TouchableOpacity>
+            
         </Box>
     );
 }
